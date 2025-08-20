@@ -14,114 +14,18 @@ console.log(`
 ║                    PostgreSQL Setup for Project Management                    ║
 ╚══════════════════════════════════════════════════════════════════════════════╝
 
-This script will help you set up a PostgreSQL database for your project.
+This script will help you set up your PostgreSQL database connection.
 
-Choose one of the following options:
+Please provide your PostgreSQL connection string in the following format:
+postgresql://username:password@localhost:5432/your_database_name
 
-1. ElephantSQL (Free tier available)
-2. Supabase (Free tier available)
-3. Render (Free tier available)
-4. Neon (Free tier available)
-5. Enter custom PostgreSQL connection string
+If you're using a cloud provider, make sure to include all required parameters.
 `);
 
-rl.question('Enter your choice (1-5): ', (choice) => {
-  let connectionString = '';
-  
-  switch (choice) {
-    case '1':
-      console.log(`
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                              ElephantSQL Setup                               ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-
-1. Go to https://www.elephantsql.com/
-2. Sign up for a free account
-3. Create a new database instance
-4. Copy the connection string from the dashboard
-5. Paste it below
-
-The connection string should look like:
-postgresql://user:password@host.db.elephantsql.com:5432/database
-`);
-      rl.question('Enter your ElephantSQL connection string: ', (url) => {
-        updateEnvFile(url);
-      });
-      break;
-      
-    case '2':
-      console.log(`
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                                Supabase Setup                                ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-
-1. Go to https://supabase.com/
-2. Sign up for a free account
-3. Create a new project
-4. Go to Project Settings > Database
-5. Copy the connection string
-6. Paste it below
-
-The connection string should look like:
-postgresql://postgres.project.supabase.co:5432/postgres
-`);
-      rl.question('Enter your Supabase connection string: ', (url) => {
-        updateEnvFile(url);
-      });
-      break;
-      
-    case '3':
-      console.log(`
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                                 Render Setup                                 ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-
-1. Go to https://render.com/
-2. Sign up for a free account
-3. Create a new PostgreSQL database
-4. Copy the connection string
-5. Paste it below
-
-The connection string should look like:
-postgresql://user:password@host:port/database
-`);
-      rl.question('Enter your Render connection string: ', (url) => {
-        updateEnvFile(url);
-      });
-      break;
-      
-    case '4':
-      console.log(`
-╔══════════════════════════════════════════════════════════════════════════════╗
-║                                  Neon Setup                                  ║
-╚══════════════════════════════════════════════════════════════════════════════╝
-
-1. Go to https://neon.tech/
-2. Sign up for a free account
-3. Create a new project
-4. Copy the connection string
-5. Paste it below
-
-The connection string should look like:
-postgresql://user:password@host:port/database
-`);
-      rl.question('Enter your Neon connection string: ', (url) => {
-        updateEnvFile(url);
-      });
-      break;
-      
-    case '5':
-      rl.question('Enter your custom PostgreSQL connection string: ', (url) => {
-        updateEnvFile(url);
-      });
-      break;
-      
-    default:
-      console.log('Invalid choice. Please run the script again.');
-      rl.close();
-      process.exit(1);
-  }
+rl.question('Enter your PostgreSQL connection string: ', (url) => {
+  updateEnvFile(url);
 });
+
 
 function updateEnvFile(connectionString) {
   if (!connectionString.trim()) {
@@ -173,4 +77,5 @@ This will create the database schema and populate it with sample data.
 `);
   
   rl.close();
+}.close();
 }
