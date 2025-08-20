@@ -60,12 +60,7 @@ Run the interactive setup script:
 node setup-postgresql.js
 ```
 
-Follow the prompts to set up with:
-- 🐘 ElephantSQL (Free tier available)
-- 🔥 Supabase (Free tier available)
-- 🚀 Render (Free tier available)
-- ✨ Neon (Free tier available)
-- Or use a custom connection string
+
 
 #### Option 2: Manual Setup
 
